@@ -2,6 +2,7 @@
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using System.Threading.Tasks;
 
 namespace EnterpriseCQRS.Api.Controllers
@@ -11,10 +12,12 @@ namespace EnterpriseCQRS.Api.Controllers
     public class ProductController : ControllerBase
     {
         public IMediator _mediator { get; }
+        private readonly ILogger<ProductController> _logger;
 
-        public ProductController(IMediator mediator)
+        public ProductController(IMediator mediator, ILogger<ProductController> logger)
         {
             _mediator = mediator;
+            _logger = logger;
         }
 
         [HttpGet]
